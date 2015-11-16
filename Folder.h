@@ -5,16 +5,15 @@
 
 class File;
 
-class Folder Q_DECL_FINAL : public Element
+class Folder : public Element
 {
     Q_OBJECT
-    explicit Folder(const QString& name, Folder *parent = 0);
     mutable int size {-1};
     void invalidateSize();
+protected:
+    explicit Folder(const QString& name, Folder *parent = 0);
 
 public:
-    static Folder &getRoot();
-
     Folder* addFolder(const QString &name);
     File* addFile(const QString &name, int size);
 

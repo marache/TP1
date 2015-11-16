@@ -1,13 +1,7 @@
-#include "Folder.h"
+#include "Partition.h"
 #include "File.h"
 
 #include <QException>
-
-Folder &Folder::getRoot()
-{
-    static Folder root(QStringLiteral("c:"));
-    return root;
-}
 
 Folder *Folder::addFolder(const QString &name)
 {
@@ -22,6 +16,9 @@ File *Folder::addFile(const QString &name, int size)
 {
     if (getElement(name))
         QException().raise();
+
+    if ((Partition::instance().getSize() + size) > Partition::instance().getCapacity())
+         QException().raise();
 
     File *f = new File(name, size, *this);
     connect(f, &QObject::destroyed, this, &Folder::invalidateSize);

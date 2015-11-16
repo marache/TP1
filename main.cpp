@@ -1,4 +1,4 @@
-#include "Folder.h"
+#include "Partition.h"
 #include "File.h"
 
 #include <QCoreApplication>
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Folder& root{ Folder::getRoot() };
+    Folder& root{ Partition::instance() };
     root.addFile(QStringLiteral ("autoexec.bat"), 5000);
     Folder* r1{ root.addFolder(QStringLiteral ("winnt")) };
     r1->addFile(QStringLiteral ("win.ini"), 300);

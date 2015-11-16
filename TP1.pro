@@ -11,10 +11,12 @@ TEMPLATE = app
 SOURCES += main.cpp \
     Folder.cpp \
     File.cpp \
-    Element.cpp
+    Element.cpp \
+    Partition.cpp
 
 HEADERS += \
     Folder.h \
     File.h \
-    Element.h
+    Element.h \
+    Partition.h
 

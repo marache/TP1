@@ -8,17 +8,15 @@ class Folder;
 class File Q_DECL_FINAL : public Element
 {
     Q_OBJECT
+    File(const QString &name, int size, Folder &parent);
+    int _size;
 public:
     virtual int getSize() const { return _size; }
+    friend class Folder;
 
 signals:
 
 public slots:
-
-private:
-    friend class Folder;
-    File(const QString &name, int size, Folder &parent);
-    int _size;
 };
 
 #endif // FILE_H
