@@ -15,7 +15,6 @@ Folder *Folder::addFolder(const QString &name)
     Q_ASSERT(findChildren<Element*>(name,Qt::FindDirectChildrenOnly).empty());
 
     Folder * f = new Folder(name, this);
-    connect(f, &QObject::destroyed, this, &Folder::invalidateSize);
     return f;
 }
 

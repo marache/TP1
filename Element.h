@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+class Folder;
+
 class Element : public QObject
 {
     Q_OBJECT
@@ -15,7 +17,7 @@ signals:
 public slots:
 
 protected:
-    explicit Element(const QString &name, QObject *parent = nullptr);
+    explicit Element(const QString &name, Folder *parent = nullptr);
 };
 
 #endif // ELEMENT_H

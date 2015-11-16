@@ -10,6 +10,8 @@ class Folder Q_DECL_FINAL : public Element
     Q_OBJECT
     explicit Folder(const QString& name, Folder *parent = 0);
     mutable int size {-1};
+    void invalidateSize();
+
 public:
     static Folder &getRoot();
 
@@ -20,10 +22,8 @@ public:
 
     virtual int getSize() const;
 
+    friend class Element;
 signals:
-
-public slots:
-    void invalidateSize();
 };
 
 #endif // FOLDER_H
