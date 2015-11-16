@@ -8,6 +8,8 @@ class File;
 class Folder Q_DECL_FINAL : public Element
 {
     Q_OBJECT
+    explicit Folder(const QString& name, Folder *parent = 0);
+    mutable int size {-1};
 public:
     static Folder &getRoot();
 
@@ -21,9 +23,7 @@ public:
 signals:
 
 public slots:
-
-protected:
-    explicit Folder(const QString& name, Folder *parent = 0);
+    void invalidateSize();
 };
 
 #endif // FOLDER_H

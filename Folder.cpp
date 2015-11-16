@@ -15,15 +15,19 @@ Folder *Folder::addFolder(const QString &name)
     Q_ASSERT(findChildren<Element*>(name,Qt::FindDirectChildrenOnly).empty());
 
     Folder * f = new Folder(name, this);
+    connect(f, &QObject::destroyed, this, &Folder::invalidateSize);
     return f;
 }
 
 File *Folder::addFile(const QString &name, int size)
 {
     if (getElement(name))
-        QException.raise();
+        QException().raise();
 
-    return new File(name, size, *this);
+    File *f = new File(name, size, *this);
+    connect(f, &QObject::destroyed, this, &Folder::invalidateSize);
+
+    return f;
 }
 
 Element *Folder::getElement(const QString &name) const
@@ -33,12 +37,24 @@ Element *Folder::getElement(const QString &name) const
 
 int Folder::getSize() const
 {
-    int size {0};
-    for(QObject *o : findChildren<File *>())
+    if (size == -1)
     {
-        size += qobject_cast<Element *>(o)->getSize();
+        size = 0;
+        for(File *o : findChildren<File *>())
+        {
+            size += o->getSize();
+        }
     }
     return size;
+}
+
+void Folder::invalidateSize()
+{
+    size = -1;
+    if(parent())
+    {
+        qobject_cast<Folder*>(parent())->invalidateSize();
+    }
 }
 
 Folder::Folder(const QString &name, Folder *parent)  : Element(name, parent)

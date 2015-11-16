@@ -12,9 +12,6 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-
-    qDebug() << typeid(nullptr) << endl;
-
     Folder& root{ Folder::getRoot() };
     root.addFile(QStringLiteral ("autoexec.bat"), 5000);
     Folder* r1{ root.addFolder(QStringLiteral ("winnt")) };
@@ -27,6 +24,7 @@ int main(int argc, char *argv[])
 
     qDebug() << root.getSize() << "octets";
     delete r1->getElement (QStringLiteral("win.ini"));
+    qDebug() << root.getSize() << "octets";
     qDebug() << root.getSize() << "octets";
     qDebug() << file->getAbsolutePath();
 
