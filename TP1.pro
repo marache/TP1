@@ -18,5 +18,6 @@ HEADERS += \
     Folder.h \
     File.h \
     Element.h \
-    Partition.h
+    Partition.h \
+    LocalTypes.h
 

@@ -16,6 +16,13 @@ QString Element::getAbsolutePath() const
     return path;
 }
 
+void Element::display(QTextStream &ts, const QString &tab)
+{
+    ts << tab << metaObject()->className() << " : " << objectName();
+    on_element_displayed(ts,tab);
+    ts << "\n";
+}
+
 Element::Element(const QString &name, Folder *parent) : QObject(parent)
 {
     setObjectName(name);

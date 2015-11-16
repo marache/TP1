@@ -1,8 +1,10 @@
 #include "File.h"
 #include "Folder.h"
 
-File::File(const QString &name, int size, Folder &parent) : Element(name, &parent)
+File::File(const QString &name, Size size, Folder &parent) :
+    Element { name, &parent},
+    size {size}
 {
-    _size = size;
+    size = size;
 }
 

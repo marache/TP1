@@ -8,18 +8,18 @@ class File;
 class Folder : public Element
 {
     Q_OBJECT
-    mutable int size {-1};
+    mutable Size size {-1};
     void invalidateSize();
 protected:
     explicit Folder(const QString& name, Folder *parent = 0);
-
+    virtual void on_element_displayed(QTextStream &ts, const QString &tab);
 public:
     Folder* addFolder(const QString &name);
-    File* addFile(const QString &name, int size);
+    File* addFile(const QString &name, Size size);
 
     Element *getElement(const QString &name) const;
 
-    virtual int getSize() const;
+    virtual Size getSize() const;
 
     friend class Element;
 signals:

@@ -12,7 +12,7 @@ Folder *Folder::addFolder(const QString &name)
     return f;
 }
 
-File *Folder::addFile(const QString &name, int size)
+File *Folder::addFile(const QString &name, Size size)
 {
     if (getElement(name))
         QException().raise();
@@ -31,9 +31,9 @@ Element *Folder::getElement(const QString &name) const
     return findChild<Element *>(name,Qt::FindDirectChildrenOnly);
 }
 
-int Folder::getSize() const
+Size Folder::getSize() const
 {
-    if (size == -1)
+    if (size <= 0)
     {
         size = 0;
         for(File *o : findChildren<File *>())
@@ -53,7 +53,17 @@ void Folder::invalidateSize()
     }
 }
 
-Folder::Folder(const QString &name, Folder *parent)  : Element(name, parent)
+Folder::Folder(const QString &name, Folder *parent) :
+    Element { name, parent }
 {
+}
+
+void Folder::on_element_displayed(QTextStream &ts, const QString &tab)
+{
+    ts << "\n";
+    for(Element *o : findChildren<Element *>())
+    {
+       o->display(ts,tab + "  ");
+    }
 }
 
