@@ -12,12 +12,14 @@ SOURCES += main.cpp \
     Folder.cpp \
     File.cpp \
     Element.cpp \
-    Partition.cpp
+    Partition.cpp \
+    Shortcut.cpp
 
 HEADERS += \
     Folder.h \
     File.h \
     Element.h \
     Partition.h \
-    LocalTypes.h
+    LocalTypes.h \
+    Shortcut.h
 

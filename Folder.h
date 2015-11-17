@@ -4,6 +4,7 @@
 #include "Element.h"
 
 class File;
+class Shortcut;
 
 class Folder : public Element
 {
@@ -16,6 +17,7 @@ protected:
 public:
     Folder* addFolder(const QString &name);
     File* addFile(const QString &name, Size size);
+    Shortcut* addLink(const QString &name, Element &element);
 
     Element *getElement(const QString &name) const;
 

@@ -23,13 +23,21 @@ int main(int argc, char *argv[])
     r2->addFile(QStringLiteral("tmp1.dat"), 645);
     auto file = r2->addFile(QStringLiteral("myDoc.txt"), 10000);
 
+    r2->addLink(QStringLiteral("racourci vers myDoc.txt"), *file);
+
     qDebug() << root.getSize() << "octets";
     delete r1->getElement (QStringLiteral("win.ini"));
-    qDebug() << root.getSize() << "octets";
     qDebug() << root.getSize() << "octets";
     qDebug() << file->getAbsolutePath();
 
     QTextStream ts(stderr);
+    root.display(ts);
+    ts.flush();
+
+    delete file;
+    qDebug() << root.getSize() << "octets";
+
+
     root.display(ts);
     ts.flush();
 
