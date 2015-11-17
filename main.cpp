@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Folder& root{ Partition::instance(QStringLiteral("C")) };
+    Folder& root{ Partition::instance(QStringLiteral("C:")) };
     root.addFile(QStringLiteral ("autoexec.bat"), 5000);
     Folder* r1{ root.addFolder(QStringLiteral ("winnt")) };
     r1->addFile(QStringLiteral ("win.ini"), 300);

@@ -10,6 +10,7 @@ class File Q_DECL_FINAL : public Element
     Q_OBJECT
     File(const QString &name, Size size, Folder &parent);
     Size size;
+    void on_element_displayed(QTextStream &ts, const QString &);
 public:
     virtual Size getSize() const { return size; }
     friend class Folder;

@@ -2,6 +2,7 @@
 #include "File.h"
 
 #include <QException>
+#include <QDebug>
 
 Folder *Folder::addFolder(const QString &name)
 {
@@ -23,6 +24,7 @@ File *Folder::addFile(const QString &name, Size size)
     File *f = new File(name, size, *this);
     connect(f, &QObject::destroyed, this, &Folder::invalidateSize);
 
+    invalidateSize();
     return f;
 }
 
@@ -46,6 +48,7 @@ Size Folder::getSize() const
 
 void Folder::invalidateSize()
 {
+    qDebug() << "[DEBUG] invalidatingSize " << objectName();
     size = -1;
     if(parent())
     {
