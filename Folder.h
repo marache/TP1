@@ -11,9 +11,9 @@ class Folder : public Element
     Q_OBJECT
     mutable Size size {-1};
     void invalidateSize();
+    virtual void on_element_displayed(QTextStream &ts, const QString &tab);
 protected:
     explicit Folder(const QString& name, Folder *parent = 0);
-    virtual void on_element_displayed(QTextStream &ts, const QString &tab);
 public:
     Folder* addFolder(const QString &name);
     File* addFile(const QString &name, Size size);

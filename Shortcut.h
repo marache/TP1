@@ -5,7 +5,7 @@
 
 #include <QPointer>
 
-class Shortcut : public Element
+class Shortcut Q_DECL_FINAL : public Element
 {
     Q_OBJECT
     QPointer<Element> link;
